@@ -19,8 +19,4 @@ connection.connect(function(err) {
   console.log('Connection established');
 });
 
-// connection.end(function(){
-//   console.log('end the connection');
-// });
-
 module.exports = connection;
