@@ -77,11 +77,6 @@ ALTER TABLE `MESSAGES` ADD FOREIGN KEY (user_id) REFERENCES `USERS` (`id`);
 -- Test Data
 -- ---
 
-INSERT INTO `USERS` (`username`) VALUES
-('sondra');
-INSERT INTO `MESSAGES` (`message`,`roomname`,`user_id`) VALUES
-('i like cats','catsANdDogs',1);
-
 
 /*  Execute this file from the command line by typing:
  *    mysql -u root < server/schema.sql
