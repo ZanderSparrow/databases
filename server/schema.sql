@@ -1,3 +1,5 @@
+drop database if exists chat;
+
 CREATE DATABASE chat;
 
 USE chat;
@@ -12,9 +14,9 @@ DROP TABLE IF EXISTS `MESSAGES`;
 CREATE TABLE messages (
   /* Describe your table here.*/
   `id` INTEGER NULL AUTO_INCREMENT DEFAULT NULL,
-  `text` MEDIUMTEXT NULL DEFAULT NULL,
+  `message` MEDIUMTEXT NULL DEFAULT NULL,
+  `roomname` CHAR(255) NULL DEFAULT NULL,
   `timestamp` TIMESTAMP NULL DEFAULT NULL,
-  `room_id` INTEGER NULL DEFAULT NULL,
   `user_id` INTEGER NULL DEFAULT NULL,
   PRIMARY KEY (`id`)
 );
@@ -37,7 +39,7 @@ DROP TABLE IF EXISTS `USERS`;
     
 CREATE TABLE `USERS` (
   `id` INTEGER NULL AUTO_INCREMENT DEFAULT NULL,
-  `name` CHAR(255) NULL DEFAULT NULL,
+  `username` CHAR(255) NULL DEFAULT NULL,
   PRIMARY KEY (`id`)
 );
 
@@ -46,13 +48,13 @@ CREATE TABLE `USERS` (
 -- 
 -- ---
 
-DROP TABLE IF EXISTS `ROOMS`;
+-- DROP TABLE IF EXISTS `ROOMS`;
     
-CREATE TABLE `ROOMS` (
-  `id` INTEGER NULL AUTO_INCREMENT DEFAULT NULL,
-  `name` CHAR(255) NULL DEFAULT NULL,
-  PRIMARY KEY (`id`)
-);
+-- CREATE TABLE `ROOMS` (
+--   `id` INTEGER NULL AUTO_INCREMENT DEFAULT NULL,
+--   `roomname` CHAR(255) NULL DEFAULT NULL,
+--   PRIMARY KEY (`id`)
+-- );
 
 
 
@@ -60,7 +62,7 @@ CREATE TABLE `ROOMS` (
 -- Foreign Keys 
 -- ---
 
-ALTER TABLE `MESSAGES` ADD FOREIGN KEY (room_id) REFERENCES `ROOMS` (`id`);
+-- ALTER TABLE `MESSAGES` ADD FOREIGN KEY (room_id) REFERENCES `ROOMS` (`id`);
 ALTER TABLE `MESSAGES` ADD FOREIGN KEY (user_id) REFERENCES `USERS` (`id`);
 
 -- ---
@@ -75,12 +77,10 @@ ALTER TABLE `MESSAGES` ADD FOREIGN KEY (user_id) REFERENCES `USERS` (`id`);
 -- Test Data
 -- ---
 
--- INSERT INTO `USERS` (`id`,`name`) VALUES
--- ('','');
--- INSERT INTO `ROOMS` (`id`,`name`) VALUES
--- ('','');
--- INSERT INTO `MESSAGES` (`id`,`text`,`timestamp`,`room_id`,`user_id`) VALUES
--- ('','','','','');
+INSERT INTO `USERS` (`username`) VALUES
+('sondra');
+INSERT INTO `MESSAGES` (`message`,`roomname`,`user_id`) VALUES
+('i like cats','catsANdDogs',1);
 
 
 /*  Execute this file from the command line by typing:
